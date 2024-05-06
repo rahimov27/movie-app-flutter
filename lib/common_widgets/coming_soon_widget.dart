@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class ComingSoonWidget extends StatelessWidget {
@@ -23,7 +22,7 @@ class ComingSoonWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: Image.network(
                 alignment: Alignment.center,
-                height: 180,
+                height: 300,
                 width: 315,
                 fit: BoxFit.cover,
                 image),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SecondPage extends StatefulWidget {
-  const SecondPage({Key? key}) : super(key: key);
+  const SecondPage({super.key});
 
   @override
   State<SecondPage> createState() => _SecondPageState();
@@ -225,8 +225,7 @@ class _SecondPageState extends State<SecondPage> {
 
 class ExploreMovieWidget extends StatelessWidget {
   const ExploreMovieWidget(
-      {Key? key, required this.imageUrl, required this.cinemaTitle})
-      : super(key: key);
+      {super.key, required this.imageUrl, required this.cinemaTitle});
 
   final String imageUrl;
   final String cinemaTitle;

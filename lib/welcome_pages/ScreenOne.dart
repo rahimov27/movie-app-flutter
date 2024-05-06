@@ -1,9 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movie_app/common_widgets/blue_button.dart';
+import 'package:movie_app/ui/PagesScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ScreenOne extends StatelessWidget {
+class ScreenOne extends StatefulWidget {
   const ScreenOne({super.key});
+
+  @override
+  State<ScreenOne> createState() => _ScreenOneState();
+}
+
+class _ScreenOneState extends State<ScreenOne> {
+  String text = '';
+  final TextEditingController nameController = TextEditingController();
+
+  @override
+  void initState() {
+    initUser();
+    super.initState();
+  }
+
+  void initUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    text = prefs.getString("username") ?? '';
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +64,10 @@ class ScreenOne extends StatelessWidget {
                   const SizedBox(
                     height: 50,
                   ),
-                  const TextField(
-                    decoration: InputDecoration(
-                      labelText: "Email",
+                  TextField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      labelText: "Username",
                       labelStyle: TextStyle(color: Colors.white),
                     ),
                   ),
@@ -58,8 +80,38 @@ class ScreenOne extends StatelessWidget {
                   const SizedBox(
                     height: 25,
                   ),
-                  const BlueButton(
-                    buttonText: "Enter",
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all<Color>(
+                          const Color(0xff54A8E5),
+                        ),
+                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                        ),
+                      ),
+                      onPressed: () async {
+                        final prefs = await SharedPreferences.getInstance();
+                        prefs.setString('user', nameController.text);
+                        text = prefs.getString("user") ?? '';
+                        setState(() {});
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const PagesScreen()));
+                      },
+                      child: const Text(
+                        "Enter",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    text,
+                    style: const TextStyle(color: Colors.white, fontSize: 40),
                   ),
                 ],
               ),

@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:movie_app/common_widgets/blue_button.dart';
+import 'package:movie_app/providers/MovieProvider.dart';
+import 'package:provider/provider.dart';
 
 class ThirdPage extends StatefulWidget {
-  const ThirdPage({Key? key}) : super(key: key);
+  const ThirdPage({super.key});
 
   @override
   State<ThirdPage> createState() => _ThirdPageState();
@@ -37,9 +37,9 @@ class _ThirdPageState extends State<ThirdPage> {
                   enableInfiniteScroll: true,
                   reverse: false,
                   // autoPlay true for continue animation
-                  autoPlay: false,
-                  autoPlayInterval: const Duration(seconds: 7),
-                  autoPlayAnimationDuration: const Duration(milliseconds: 1800),
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 5),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 1700),
                   autoPlayCurve: Curves.fastOutSlowIn,
                   enlargeCenterPage: true,
                   onPageChanged: (index, reason) {
@@ -49,9 +49,9 @@ class _ThirdPageState extends State<ThirdPage> {
                   },
                 ),
                 items: [
-                  'https://static.posters.cz/image/1300/poster/matrix-revolutions-neo-i104635.jpg',
-                  'https://static.posters.cz/image/1300/art-photo/matrix-choose-your-path-i153524.jpg',
-                  'https://cdn11.bigcommerce.com/s-ydriczk/images/stencil/1500x1500/products/84652/93459/the-matrix-revolutions-original-movie-poster-advance-style-buy-now-at-starstills__60108.1572249638.jpg?c=2&imbypass=on',
+                  context.watch<MovieProvider>().imageURL,
+                  context.watch<MovieProvider>().imageURL,
+                  context.watch<MovieProvider>().imageURL,
                 ].map(
                   (item) {
                     return Builder(
@@ -106,19 +106,19 @@ class _ThirdPageState extends State<ThirdPage> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      const Column(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Matrix",
+                            context.watch<MovieProvider>().cinemaTitle,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            "Director: Destin Daniel Cretton",
+                            context.watch<MovieProvider>().director,
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Color(0xffBABFC9),
@@ -142,8 +142,8 @@ class _ThirdPageState extends State<ThirdPage> {
                         size: 18,
                         color: Color(0xffFFA235),
                       ),
-                      const Text(
-                        "4,9",
+                      Text(
+                        context.watch<MovieProvider>().ratings,
                         style: TextStyle(
                             fontSize: 14,
                             color: Color(0xffBABFC9),
@@ -163,9 +163,9 @@ class _ThirdPageState extends State<ThirdPage> {
                           width: 74,
                           height: 29,
                           color: const Color(0xff252932),
-                          child: const Center(
+                          child: Center(
                               child: Text(
-                            "Action",
+                            context.watch<MovieProvider>().type,
                             style: TextStyle(
                               color: Color(0xffB2B5BB),
                             ),
@@ -178,12 +178,12 @@ class _ThirdPageState extends State<ThirdPage> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Container(
-                          width: 134,
+                          width: 110,
                           height: 29,
                           color: const Color(0xff252932),
-                          child: const Center(
+                          child: Center(
                               child: Text(
-                            "Fiction Fantasy",
+                            context.watch<MovieProvider>().releasedDate,
                             style: TextStyle(
                               color: Color(0xffB2B5BB),
                             ),
@@ -199,9 +199,9 @@ class _ThirdPageState extends State<ThirdPage> {
                           width: 83,
                           height: 29,
                           color: const Color(0xff252932),
-                          child: const Center(
+                          child: Center(
                             child: Text(
-                              "02h 43m",
+                              context.watch<MovieProvider>().runtime,
                               style: TextStyle(
                                 color: Color(0xffB2B5BB),
                               ),
@@ -215,19 +215,19 @@ class _ThirdPageState extends State<ThirdPage> {
                 const SizedBox(
                   height: 27,
                 ),
-                const Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Synopsis",
+                      context.watch<MovieProvider>().genre,
                       style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      "Martial-arts master Shang-Chi confronts the past he thought he left behind when he's drawn into...",
+                      context.watch<MovieProvider>().plot,
                       style: TextStyle(
                           fontSize: 14,
                           color: Color(0xffBABFC9),

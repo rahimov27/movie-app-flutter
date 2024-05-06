@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/ui/PagesScreen.dart';
+import 'package:movie_app/providers/MovieProvider.dart';
+import 'package:movie_app/welcome_pages/ScreenOne.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    const MaterialApp(
-      home: MyApp(),
+    ChangeNotifierProvider(
+      create: (context) => MovieProvider(),
+      child: const MaterialApp(
+        home: MyApp(),
+      ),
     ),
   );
 }
@@ -14,6 +19,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const PagesScreen();
+    return const ScreenOne();
   }
 }
