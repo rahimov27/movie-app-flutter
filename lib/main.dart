@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/providers/MovieProvider.dart';
-import 'package:movie_app/ui/PaymentPage.dart';
-import 'package:movie_app/ui/SelectSeats.dart';
-import 'package:movie_app/welcome_pages/ScreenOne.dart';
+import 'package:movie_app/ui/PagesScreen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -21,7 +19,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ScreenOne();
+    // return const ScreenOne();
     // return const PaymentPage();
+    // return const SettingsPage();
+    return PagesScreen();
   }
 }

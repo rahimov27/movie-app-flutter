@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/ui/HomePage.dart';
 
 class BlueButton extends StatelessWidget {
   const BlueButton({super.key, required this.buttonText, required this.myFunc});
