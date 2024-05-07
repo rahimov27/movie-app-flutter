@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/common_widgets/cinema_near_widget.dart';
 import 'package:movie_app/common_widgets/coming_soon_widget.dart';
 import 'package:movie_app/providers/MovieProvider.dart';
+import 'package:movie_app/resources/resources.dart';
 import 'package:movie_app/ui/ThirdPage.dart';
 import 'package:provider/provider.dart';
 
@@ -41,9 +42,11 @@ class HomePage extends StatelessWidget {
                 child: Container(
                   width: 48,
                   height: 48,
-                  color: Colors.red,
+                  child: Image(
+                    image: AssetImage(Images.userprof),
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ),

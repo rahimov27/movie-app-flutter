@@ -21,7 +21,15 @@ class _ThirdPageState extends State<ThirdPage> {
       backgroundColor: const Color(0xff1B1E25),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text('Complicated Carousel Demo'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -117,55 +125,63 @@ class _ThirdPageState extends State<ThirdPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            context
+                            _concateTitle(context
                                     .watch<MovieProvider>()
                                     .cinemaTitle
                                     .isNotEmpty
                                 ? context.watch<MovieProvider>().cinemaTitle
-                                : "Batman",
+                                : "Batman"),
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500),
                           ),
-                          Text(
-                            context
-                                    .watch<MovieProvider>()
-                                    .cinemaTitle
-                                    .isNotEmpty
-                                ? context.watch<MovieProvider>().director
-                                : "Director Matt Reeves",
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Color(0xffBABFC9),
-                                fontWeight: FontWeight.w400),
+                          Row(
+                            children: [
+                              Text(
+                                context
+                                        .watch<MovieProvider>()
+                                        .cinemaTitle
+                                        .isNotEmpty
+                                    ? context.watch<MovieProvider>().director
+                                    : "Director Matt Reeves",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color: Color(0xffBABFC9),
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Container(
+                                    width: 1,
+                                    height: 20,
+                                    color: const Color(0xff696D74),
+                                  ),
+                                ),
+                              ),
+                              const Icon(
+                                Icons.star,
+                                size: 18,
+                                color: Color(0xffFFA235),
+                              ),
+                              Text(
+                                context
+                                        .watch<MovieProvider>()
+                                        .ratings
+                                        .isNotEmpty
+                                    ? context.watch<MovieProvider>().ratings
+                                    : "4.9/10",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color: Color(0xffBABFC9),
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ],
                           ),
                         ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Container(
-                            width: 1,
-                            height: 20,
-                            color: const Color(0xff696D74),
-                          ),
-                        ),
-                      ),
-                      const Icon(
-                        Icons.star,
-                        size: 18,
-                        color: Color(0xffFFA235),
-                      ),
-                      Text(
-                        context.watch<MovieProvider>().ratings.isNotEmpty
-                            ? context.watch<MovieProvider>().ratings
-                            : "4.9/10",
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Color(0xffBABFC9),
-                            fontWeight: FontWeight.w400),
                       ),
                     ],
                   ),
@@ -281,5 +297,13 @@ class _ThirdPageState extends State<ThirdPage> {
         ],
       ),
     );
+  }
+
+  String _concateTitle(String title) {
+    if (title.length <= 20) {
+      return title;
+    } else {
+      return "${title.substring(0, 33)}...";
+    }
   }
 }
