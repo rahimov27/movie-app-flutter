@@ -31,7 +31,7 @@ class _ScreenOneState extends State<ScreenOne> {
     return Stack(
       children: <Widget>[
         Image.asset(
-          "assets/images/cinema-poster.jpeg",
+          "assets/images/back-poster.jpeg",
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           fit: BoxFit.cover,

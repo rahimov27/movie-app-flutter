@@ -5,6 +5,7 @@ import 'package:movie_app/resources/resources.dart';
 
 void main() {
   test('images assets test', () {
+    expect(File(Images.backPoster).existsSync(), isTrue);
     expect(File(Images.cinemaPoster).existsSync(), isTrue);
   });
 }

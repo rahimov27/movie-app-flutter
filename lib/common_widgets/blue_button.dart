@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/ui/HomePage.dart';
 
 class BlueButton extends StatelessWidget {
-  const BlueButton({
-    super.key,
-    required this.buttonText,
-  });
+  const BlueButton({super.key, required this.buttonText, required this.myFunc});
 
   final String buttonText;
+  final Function() myFunc;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -15,7 +13,8 @@ class BlueButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.all<Color>(const Color(0xff54A8E5)),
+          backgroundColor:
+              WidgetStateProperty.all<Color>(const Color(0xff54A8E5)),
           shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius:
@@ -23,10 +22,7 @@ class BlueButton extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomePage()));
-        },
+        onPressed: myFunc,
         child: Text(
           buttonText,
           style: const TextStyle(color: Colors.white),

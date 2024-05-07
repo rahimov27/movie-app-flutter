@@ -49,9 +49,15 @@ class _ThirdPageState extends State<ThirdPage> {
                   },
                 ),
                 items: [
-                  context.watch<MovieProvider>().imageURL,
-                  context.watch<MovieProvider>().imageURL,
-                  context.watch<MovieProvider>().imageURL,
+                  context.watch<MovieProvider>().imageURL.isNotEmpty
+                      ? context.watch<MovieProvider>().imageURL
+                      : "https://static.posters.cz/image/1300/poster/the-batman-unmask-the-truth-i133030.jpg",
+                  context.watch<MovieProvider>().imageURL.isNotEmpty
+                      ? context.watch<MovieProvider>().imageURL
+                      : "https://rukminim2.flixcart.com/image/850/1000/l0bbonk0/poster/t/y/x/medium-the-batman-2022-movie-poster-18-x-12-inch-300-gsm-m0066-original-imagc3zmdruhr6y7.jpeg?q=90&crop=false",
+                  context.watch<MovieProvider>().imageURL.isNotEmpty
+                      ? context.watch<MovieProvider>().imageURL
+                      : "https://xl.movieposterdb.com/22_05/2022/1877830/xl_1877830_acb4575c.jpg",
                 ].map(
                   (item) {
                     return Builder(
@@ -111,14 +117,24 @@ class _ThirdPageState extends State<ThirdPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            context.watch<MovieProvider>().cinemaTitle,
+                            context
+                                    .watch<MovieProvider>()
+                                    .cinemaTitle
+                                    .isNotEmpty
+                                ? context.watch<MovieProvider>().cinemaTitle
+                                : "Batman",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            context.watch<MovieProvider>().director,
+                            context
+                                    .watch<MovieProvider>()
+                                    .cinemaTitle
+                                    .isNotEmpty
+                                ? context.watch<MovieProvider>().director
+                                : "Director Matt Reeves",
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Color(0xffBABFC9),
@@ -143,7 +159,9 @@ class _ThirdPageState extends State<ThirdPage> {
                         color: Color(0xffFFA235),
                       ),
                       Text(
-                        context.watch<MovieProvider>().ratings,
+                        context.watch<MovieProvider>().ratings.isNotEmpty
+                            ? context.watch<MovieProvider>().ratings
+                            : "4.9/10",
                         style: TextStyle(
                             fontSize: 14,
                             color: Color(0xffBABFC9),
@@ -164,12 +182,15 @@ class _ThirdPageState extends State<ThirdPage> {
                           height: 29,
                           color: const Color(0xff252932),
                           child: Center(
-                              child: Text(
-                            context.watch<MovieProvider>().type,
-                            style: TextStyle(
-                              color: Color(0xffB2B5BB),
+                            child: Text(
+                              context.watch<MovieProvider>().type.isNotEmpty
+                                  ? context.watch<MovieProvider>().type
+                                  : "Movie",
+                              style: TextStyle(
+                                color: Color(0xffB2B5BB),
+                              ),
                             ),
-                          )),
+                          ),
                         ),
                       ),
                     ),
@@ -182,12 +203,18 @@ class _ThirdPageState extends State<ThirdPage> {
                           height: 29,
                           color: const Color(0xff252932),
                           child: Center(
-                              child: Text(
-                            context.watch<MovieProvider>().releasedDate,
-                            style: TextStyle(
-                              color: Color(0xffB2B5BB),
+                            child: Text(
+                              context
+                                      .watch<MovieProvider>()
+                                      .releasedDate
+                                      .isNotEmpty
+                                  ? context.watch<MovieProvider>().releasedDate
+                                  : "Mar 22 2024",
+                              style: TextStyle(
+                                color: Color(0xffB2B5BB),
+                              ),
                             ),
-                          )),
+                          ),
                         ),
                       ),
                     ),
@@ -201,7 +228,9 @@ class _ThirdPageState extends State<ThirdPage> {
                           color: const Color(0xff252932),
                           child: Center(
                             child: Text(
-                              context.watch<MovieProvider>().runtime,
+                              context.watch<MovieProvider>().runtime.isNotEmpty
+                                  ? context.watch<MovieProvider>().runtime
+                                  : "126 min",
                               style: TextStyle(
                                 color: Color(0xffB2B5BB),
                               ),
@@ -220,14 +249,18 @@ class _ThirdPageState extends State<ThirdPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      context.watch<MovieProvider>().genre,
+                      context.watch<MovieProvider>().genre.isNotEmpty
+                          ? context.watch<MovieProvider>().genre
+                          : "Action, Adventure, Sci-Fi",
                       style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      context.watch<MovieProvider>().plot,
+                      context.watch<MovieProvider>().plot.isNotEmpty
+                          ? context.watch<MovieProvider>().plot
+                          : "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
                       style: TextStyle(
                           fontSize: 14,
                           color: Color(0xffBABFC9),
@@ -237,6 +270,7 @@ class _ThirdPageState extends State<ThirdPage> {
                       height: 25,
                     ),
                     BlueButton(
+                      myFunc: () {},
                       buttonText: "Book ticket",
                     )
                   ],
